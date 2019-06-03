@@ -46,6 +46,10 @@ public class ProductOracleDaoLmpl extends OracleBaseDao implements ProductDao {
 					+ product.getBescrijving() + "'," 
 					+ product.getPrijs() + ")";
 			ResultSet myRs = insertStmt.executeQuery(q);
+			
+			String q2 = "INSERT INTO OV_CHIPKAART_PRODUCT SET "
+					+ "PRODUCTNUMMER = '" + product.getProductnummer() + "' ";
+			ResultSet myRs2 = insertStmt.executeQuery(q2);
 		} catch (Exception exc) {
 			exc.printStackTrace();
 		}
@@ -64,6 +68,10 @@ public class ProductOracleDaoLmpl extends OracleBaseDao implements ProductDao {
 					+ "BESCHRIJVING = '" + product.getBescrijving() + "' "
 					+ "PRIJS = '" + product.getPrijs() + "' ";
 			ResultSet myRs = myStmt.executeQuery(q);
+			
+			String q2 = "Update OV_CHIPKAART_PRODUCT SET "
+					+ "PRODUCTNUMMER = '" + product.getProductnummer() + "' ";
+			ResultSet myRs2 = myStmt.executeQuery(q2);
 		} catch (Exception exc) {
 			exc.printStackTrace();
 		}
@@ -76,6 +84,9 @@ public class ProductOracleDaoLmpl extends OracleBaseDao implements ProductDao {
 			Connection myConn = getConnection();
 			Statement myStmt = myConn.createStatement();
 			ResultSet myRs = myStmt.executeQuery("delete from PRODUCT "
+					+ "where PRODUCTNUMMER = " + product.getProductnummer());
+			
+			ResultSet myRs2 = myStmt.executeQuery("delete from OV_CHIPKAART "
 					+ "where PRODUCTNUMMER = " + product.getProductnummer());
 			return true;
 		} catch (Exception exc) {

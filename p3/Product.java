@@ -1,10 +1,13 @@
 package p3;
 
+import java.util.ArrayList;
+
 public class Product {
 	private String productNaam;
 	private String beschrijving;
 	private double prijs;
 	private int productnummer;
+	private ArrayList<OvChipkaart> kaarten = new ArrayList<OvChipkaart>();
 	
 	public Product() {}
 	
@@ -39,4 +42,14 @@ public class Product {
 	public double getPrijs() {
 		return this.prijs;
 	}
+	
+	public ArrayList<OvChipkaart> getOvChipkaarten() {
+		return this.kaarten;
+	}
+	
+	public void voegKaartenToe(OvChipkaart o) {
+		if (!this.kaarten.contains(o)) {
+			this.kaarten.add(o);
+		}
+}
 }
